@@ -36,7 +36,7 @@ const CONFIG = {
           title: '3D-Printed Dyson Vacuum Replacement Part',
           description:
             'I reverse-engineered and 3D-designed a replacement brush end cap for a Dyson vacuum cleaner. This specific component breaks easily, and Dyson does not sell the spare part individually.',
-          imageUrl: './public/dysonv10endcap.jpg',
+          imageUrl: '/dysonv10endcap.jpg',
           link: 'https://www.thingiverse.com/thing:7357903',
         },
       ],
