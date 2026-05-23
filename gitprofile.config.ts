@@ -74,7 +74,7 @@ const CONFIG = {
   },
   resume: {
     fileUrl:
-      '/peleo_s_resume.pdf', // Empty fileUrl will hide the `Download Resume` button.
+      '/leonardo_pelorosso_cv.pdf', // Empty fileUrl will hide the `Download Resume` button.
   },
   skills: [
     // ── DATABASE & DATA ENGINEERING ──
