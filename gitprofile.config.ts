@@ -69,23 +69,25 @@ const CONFIG = {
     fileUrl:
       '', // Empty fileUrl will hide the `Download Resume` button.
   },
-  skillsCategories: [
-    {
-      title: 'Database & Data Engineering',
-      skills: ['PostgreSQL', 'MongoDB', 'Neo4j (Cypher)', 'Cassandra', 'ElasticSearch', 'REDIS']
-    },
-    {
-      title: 'Linguaggi di Programmazione',
-      skills: ['Python', 'C/C++']
-    },
-    {
-      title: 'Machine Learning & AI',
-      skills: ['PyTorch']
-    },
-    {
-      title: 'DevOps & Strumenti',
-      skills: ['Docker', 'Git']
-    }
+  skills: [
+    // ── DATABASE & DATA ENGINEERING ──
+    '💾 PostgreSQL',
+    '💾 MongoDB',
+    '💾 Neo4j (Cypher)',
+    '💾 Cassandra',
+    '💾 ElasticSearch',
+    '💾 REDIS',
+  
+    // ── PROGRAMMING LANGUAGES ──
+    '💻 Python',
+    '💻 C/C++',
+  
+    // ── MACHINE LEARNING ──
+    '🤖 PyTorch',
+  
+    // ── DEVOPS & TOOLS ──
+    '🛠️ Docker',
+    '🛠️ Git',
   ],
   experiences: [
     {
