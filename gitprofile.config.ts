@@ -112,16 +112,22 @@ const CONFIG = {
   educations: [
     {
       institution: 'Politecnico di Milano',
+      degree: 'Master in High Performance Computing',
+      from: '2024',
+      to: 'Present',
+    },
+    {
+      institution: 'Politecnico di Milano',
       degree: 'Bachelor in Engineering Physics',
       from: '2021',
       to: '2024',
     },
     {
-      institution: 'Politecnico di Milano',
-      degree: 'Mater in High Performance Computing',
-      from: '2024',
-      to: 'Present',
-    },
+      institution: 'Liceo Scientifico Statale Paolo Frisi, Monza, Italy',
+      degree: 'High School Diploma',
+      from: '2016',
+      to: '2021',
+    }
   ],
   publications: [
     {
@@ -162,6 +168,7 @@ const CONFIG = {
     themes: [
       'light',
       'dark',
+      /*
       'cupcake',
       'bumblebee',
       'emerald',
@@ -196,6 +203,7 @@ const CONFIG = {
       'abyss',
       'silk',
       'procyon',
+      */
     ],
   },
 
@@ -204,7 +212,7 @@ const CONFIG = {
       class="text-primary" href="https://github.com/arifszn/gitprofile"
       target="_blank"
       rel="noreferrer"
-    >GitProfile</a> and ❤️`,
+    >GitProfile</a>`,
 
   enablePWA: true,
 };
