@@ -14,7 +14,7 @@ const CONFIG = {
     github: {
       display: true, // Display GitHub projects?
       header: 'Github Projects',
-      mode: 'automatic', // Mode can be: 'automatic' or 'manual'
+      mode: 'manual', // Mode can be: 'automatic' or 'manual'
       automatic: {
         sortBy: 'stars', // Sort projects by 'stars' or 'updated'
         limit: 8, // How many projects to display.
@@ -25,7 +25,7 @@ const CONFIG = {
       },
       manual: {
         // Properties for manually specifying projects
-        projects: [''], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
+        projects: ['BENfrost-20/montecarlo-DGL', ], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
       },
     },
     external: {
@@ -38,6 +38,13 @@ const CONFIG = {
             'I reverse-engineered and 3D-designed a replacement brush end cap for a Dyson vacuum cleaner. This specific component breaks easily, and Dyson does not sell the spare part individually.',
           imageUrl: '/dysonv10endcap.png',
           link: 'https://www.thingiverse.com/thing:7357903',
+        },
+        {
+          title: '3D-Printed Whirpool Refrigerator Valve Replacement',
+          description:
+          'I reverse-engineered and 3D-designed a replacement valve component for a Whirlpool refrigerator after the original part failed. This custom component has been operating flawlessly for over 6 years, preventing a costly appliance replacement and proving long-term part durability.',
+          imageUrl: '/whirpoolvalve.png',
+          link: 'https://www.thingiverse.com/thing:7357991',
         },
       ],
     },
