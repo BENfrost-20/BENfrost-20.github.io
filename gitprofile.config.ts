@@ -110,7 +110,7 @@ const CONFIG = {
       name: 'Certificate in Advanced English',
       body: 'Pass at Grade C with overall score: 190',
       year: 'October 2020',
-      link: '',
+      link: 'StatementOfResult.pdf',
     },
   ],
   educations: [
