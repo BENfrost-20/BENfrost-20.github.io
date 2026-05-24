@@ -27,19 +27,6 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
   return (
     <div className="card shadow-lg card-sm bg-base-100">
       <div className="grid place-items-center py-8">
-        
-        {/* Nome preso da GitHub, posizionato sopra l'immagine in maiuscolo */}
-        {loading || !profile ? (
-          <div className="mb-6">
-            {skeleton({ widthCls: 'w-64', heightCls: 'h-10' })}
-          </div>
-        ) : (
-          <h2 className="text-3xl font-bold mb-6 text-base-content tracking-widest uppercase text-center">
-            {profile.name}
-          </h2>
-        )}
-
-        {/* Foto Profilo */}
         {loading || !profile ? (
           <div className="avatar opacity-90">
             <div className="mb-8 rounded-full w-32 h-32">
@@ -73,17 +60,22 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
             </div>
           </div>
         )}
-
-        {/* Sezione Sotto (Bio e Resume) */}
         <div className="text-center mx-auto px-8">
+          <h5 className="font-bold text-2xl">
+            {loading || !profile ? (
+              skeleton({ widthCls: 'w-48', heightCls: 'h-8' })
+            ) : (
+              <span className="text-base-content opacity-70">
+                {profile.name}
+              </span>
+            )}
+          </h5>
           <div className="mt-3 text-base-content font-mono">
             {loading || !profile
               ? skeleton({ widthCls: 'w-48', heightCls: 'h-5' })
               : profile.bio}
           </div>
         </div>
-        
-        {/* Pulsante Resume */}
         {resumeFileUrl &&
           (loading ? (
             <div className="mt-6">
