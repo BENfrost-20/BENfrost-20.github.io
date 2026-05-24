@@ -7,17 +7,13 @@ const SkillCard = ({
   loading: boolean;
   skills: string[];
 }) => {
+  // Ho semplificato la generazione dello skeleton usando Array.from
   const renderSkeleton = () => {
-    const array = [];
-    for (let index = 0; index < 12; index++) {
-      array.push(
-        <div key={index}>
-          {skeleton({ widthCls: 'w-16', heightCls: 'h-4', className: 'm-1' })}
-        </div>,
-      );
-    }
-
-    return array;
+    return Array.from({ length: 12 }).map((_, index) => (
+      <li key={index} className="w-full">
+        {skeleton({ widthCls: 'w-3/4', heightCls: 'h-4', className: 'my-1' })}
+      </li>
+    ));
   };
 
   return (
@@ -32,16 +28,17 @@ const SkillCard = ({
             )}
           </h5>
         </div>
-        <div className="p-3 flow-root">
-          <div className="-m-1 flex flex-wrap justify-center gap-2">
+        <div className="p-3">
+          {/* Sostituito flex con grid a 2 colonne, aggiunto lo stile della lista */}
+          <ul className="grid grid-cols-2 gap-x-4 gap-y-2 list-disc list-inside text-sm mt-2">
             {loading
               ? renderSkeleton()
               : skills.map((skill, index) => (
-                  <div key={index} className="badge badge-primary badge-sm">
+                  <li key={index} className="text-base-content">
                     {skill}
-                  </div>
+                  </li>
                 ))}
-          </div>
+          </ul>
         </div>
       </div>
     </div>
