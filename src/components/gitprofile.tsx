@@ -13,21 +13,15 @@ import { getInitialTheme, getSanitizedConfig, setupHotjar } from '../utils';
 import { SanitizedConfig } from '../interfaces/sanitized-config';
 import ErrorPage from './error-page';
 import { DEFAULT_THEMES } from '../constants/default-themes';
-import ThemeChanger from './theme-changer';
 import { BG_COLOR } from '../constants';
 import AvatarCard from './avatar-card';
 import { Profile } from '../interfaces/profile';
 import DetailsCard from './details-card';
 import SkillCard from './skill-card';
-import ExperienceCard from './experience-card';
 import EducationCard from './education-card';
 import CertificationCard from './certification-card';
 import { GithubProject } from '../interfaces/github-project';
 import GithubProjectCard from './github-project-card';
-import ExternalProjectCard from './external-project-card';
-import BlogCard from './blog-card';
-import Footer from './footer';
-import PublicationCard from './publication-card';
 
 /**
  * Renders the GitProfile component.
@@ -177,7 +171,7 @@ const GitProfile = ({ config }: { config: Config }) => {
     }
   };
 
-return (
+  return (
     <div className="fade-in h-screen">
       {error ? (
         <ErrorPage
@@ -186,200 +180,63 @@ return (
           subTitle={error.subTitle}
         />
       ) : (
-        <>
-          <div className={`p-4 lg:p-10 min-h-full ${BG_COLOR}`}>
+        <div className={`p-4 lg:p-10 min-h-full ${BG_COLOR}`}>
+          {/* Contenitore a colonna singola, allineato al centro per schermi più larghi */}
+          <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto rounded-box">
             
-            {/* ========================================================= */}
-            {/* 1. LAYOUT SMARTPHONE (Visibile SOLO su Mobile)            */}
-            {/* ========================================================= */}
-            <div className="grid grid-cols-1 gap-6 lg:hidden">
-              
-              {/* 1. AVATAR */}
-              <AvatarCard
-                profile={profile}
+            {/* 1. Avatar */}
+            <AvatarCard
+              profile={profile}
+              loading={loading}
+              avatarRing={sanitizedConfig.themeConfig.displayAvatarRing}
+              resumeFileUrl={sanitizedConfig.resume.fileUrl}
+            />
+
+            {/* 2. Tech Stack (Skills) */}
+            {sanitizedConfig.skills.length !== 0 && (
+              <SkillCard
                 loading={loading}
-                avatarRing={sanitizedConfig.themeConfig.displayAvatarRing}
-                resumeFileUrl={sanitizedConfig.resume.fileUrl}
+                skills={sanitizedConfig.skills}
               />
+            )}
 
-              {/* 2. SKILL */}
-              {sanitizedConfig.skills.length !== 0 && (
-                <SkillCard
-                  loading={loading}
-                  skills={sanitizedConfig.skills}
-                />
-              )}
-
-              {/* 3. PROGETTI (GitHub + Esterni) */}
-              {sanitizedConfig.projects.github.display && (
-                <GithubProjectCard
-                  header={sanitizedConfig.projects.github.header}
-                  limit={sanitizedConfig.projects.github.automatic.limit}
-                  githubProjects={githubProjects}
-                  loading={loading}
-                  googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
-                />
-              )}
-              {sanitizedConfig.projects.external.projects.length !== 0 && (
-                <ExternalProjectCard
-                  loading={loading}
-                  header={sanitizedConfig.projects.external.header}
-                  externalProjects={sanitizedConfig.projects.external.projects}
-                  googleAnalyticId={sanitizedConfig.googleAnalytics.id}
-                />
-              )}
-
-              {/* 4. RECAPITI (DetailsCard) */}
-              <DetailsCard
-                profile={profile}
+            {/* 3. Github Projects */}
+            {sanitizedConfig.projects.github.display && (
+              <GithubProjectCard
+                header={sanitizedConfig.projects.github.header}
+                limit={sanitizedConfig.projects.github.automatic.limit}
+                githubProjects={githubProjects}
                 loading={loading}
-                github={sanitizedConfig.github}
-                social={sanitizedConfig.social}
+                googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
               />
+            )}
 
-              {/* 5. IL RESTO (Selettore Tema, Esperienze, Certificazioni, ecc.) */}
-              {!sanitizedConfig.themeConfig.disableSwitch && (
-                <ThemeChanger
-                  theme={theme}
-                  setTheme={setTheme}
-                  loading={loading}
-                  themeConfig={sanitizedConfig.themeConfig}
-                />
-              )}
-              {sanitizedConfig.experiences.length !== 0 && (
-                <ExperienceCard
-                  loading={loading}
-                  experiences={sanitizedConfig.experiences}
-                />
-              )}
-              {sanitizedConfig.certifications.length !== 0 && (
-                <CertificationCard
-                  loading={loading}
-                  certifications={sanitizedConfig.certifications}
-                />
-              )}
-              {sanitizedConfig.educations.length !== 0 && (
-                <EducationCard
-                  loading={loading}
-                  educations={sanitizedConfig.educations}
-                />
-              )}
-              {sanitizedConfig.publications.length !== 0 && (
-                <PublicationCard
-                  loading={loading}
-                  publications={sanitizedConfig.publications}
-                />
-              )}
-              {sanitizedConfig.blog.display && (
-                <BlogCard
-                  loading={loading}
-                  googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
-                  blog={sanitizedConfig.blog}
-                />
-              )}
-            </div>
+            {/* 4. Education */}
+            {sanitizedConfig.educations.length !== 0 && (
+              <EducationCard
+                loading={loading}
+                educations={sanitizedConfig.educations}
+              />
+            )}
 
-            {/* ========================================================= */}
-            {/* 2. LAYOUT DESKTOP (Inalterato, nascosto su Mobile)        */}
-            {/* ========================================================= */}
-            <div className="hidden lg:grid grid-cols-3 gap-6 rounded-box">
-              <div className="col-span-1">
-                <div className="grid grid-cols-1 gap-6">
-                  {!sanitizedConfig.themeConfig.disableSwitch && (
-                    <ThemeChanger
-                      theme={theme}
-                      setTheme={setTheme}
-                      loading={loading}
-                      themeConfig={sanitizedConfig.themeConfig}
-                    />
-                  )}
-                  <AvatarCard
-                    profile={profile}
-                    loading={loading}
-                    avatarRing={sanitizedConfig.themeConfig.displayAvatarRing}
-                    resumeFileUrl={sanitizedConfig.resume.fileUrl}
-                  />
-                  <DetailsCard
-                    profile={profile}
-                    loading={loading}
-                    github={sanitizedConfig.github}
-                    social={sanitizedConfig.social}
-                  />
-                  {sanitizedConfig.skills.length !== 0 && (
-                    <SkillCard
-                      loading={loading}
-                      skills={sanitizedConfig.skills}
-                    />
-                  )}
-                  {sanitizedConfig.experiences.length !== 0 && (
-                    <ExperienceCard
-                      loading={loading}
-                      experiences={sanitizedConfig.experiences}
-                    />
-                  )}
-                  {sanitizedConfig.certifications.length !== 0 && (
-                    <CertificationCard
-                      loading={loading}
-                      certifications={sanitizedConfig.certifications}
-                    />
-                  )}
-                  {sanitizedConfig.educations.length !== 0 && (
-                    <EducationCard
-                      loading={loading}
-                      educations={sanitizedConfig.educations}
-                    />
-                  )}
-                </div>
-              </div>
-              <div className="lg:col-span-2 col-span-1">
-                <div className="grid grid-cols-1 gap-6">
-                  {sanitizedConfig.projects.github.display && (
-                    <GithubProjectCard
-                      header={sanitizedConfig.projects.github.header}
-                      limit={sanitizedConfig.projects.github.automatic.limit}
-                      githubProjects={githubProjects}
-                      loading={loading}
-                      googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
-                    />
-                  )}
-                  {sanitizedConfig.publications.length !== 0 && (
-                    <PublicationCard
-                      loading={loading}
-                      publications={sanitizedConfig.publications}
-                    />
-                  )}
-                  {sanitizedConfig.projects.external.projects.length !== 0 && (
-                    <ExternalProjectCard
-                      loading={loading}
-                      header={sanitizedConfig.projects.external.header}
-                      externalProjects={
-                        sanitizedConfig.projects.external.projects
-                      }
-                      googleAnalyticId={sanitizedConfig.googleAnalytics.id}
-                    />
-                  )}
-                  {sanitizedConfig.blog.display && (
-                    <BlogCard
-                      loading={loading}
-                      googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
-                      blog={sanitizedConfig.blog}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
+            {/* 5. Certifications */}
+            {sanitizedConfig.certifications.length !== 0 && (
+              <CertificationCard
+                loading={loading}
+                certifications={sanitizedConfig.certifications}
+              />
+            )}
+
+            {/* 6. Details */}
+            <DetailsCard
+              profile={profile}
+              loading={loading}
+              github={sanitizedConfig.github}
+              social={sanitizedConfig.social}
+            />
 
           </div>
-          {sanitizedConfig.footer && (
-            <footer
-              className={`p-4 footer ${BG_COLOR} text-base-content footer-center`}
-            >
-              <div className="card card-sm bg-base-100 shadow-sm">
-                <Footer content={sanitizedConfig.footer} loading={loading} />
-              </div>
-            </footer>
-          )}
-        </>
+        </div>
       )}
     </div>
   );
