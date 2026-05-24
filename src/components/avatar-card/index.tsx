@@ -27,6 +27,12 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
   return (
     <div className="card shadow-lg card-sm bg-base-100">
       <div className="grid place-items-center py-8">
+        
+        {/* Il tuo nome aggiunto in maiuscolo sopra l'immagine */}
+        <h2 className="text-3xl font-bold mb-6 text-base-content tracking-widest uppercase text-center">
+          LEONARDO PELOROSSO
+        </h2>
+
         {loading || !profile ? (
           <div className="avatar opacity-90">
             <div className="mb-8 rounded-full w-32 h-32">
