@@ -177,7 +177,7 @@ const GitProfile = ({ config }: { config: Config }) => {
     }
   };
 
-  return (
+return (
     <div className="fade-in h-screen">
       {error ? (
         <ErrorPage
@@ -188,7 +188,101 @@ const GitProfile = ({ config }: { config: Config }) => {
       ) : (
         <>
           <div className={`p-4 lg:p-10 min-h-full ${BG_COLOR}`}>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rounded-box">
+            
+            {/* ========================================================= */}
+            {/* 1. LAYOUT SMARTPHONE (Visibile SOLO su Mobile)            */}
+            {/* ========================================================= */}
+            <div className="grid grid-cols-1 gap-6 lg:hidden">
+              
+              {/* 1. AVATAR */}
+              <AvatarCard
+                profile={profile}
+                loading={loading}
+                avatarRing={sanitizedConfig.themeConfig.displayAvatarRing}
+                resumeFileUrl={sanitizedConfig.resume.fileUrl}
+              />
+
+              {/* 2. SKILL */}
+              {sanitizedConfig.skills.length !== 0 && (
+                <SkillCard
+                  loading={loading}
+                  skills={sanitizedConfig.skills}
+                />
+              )}
+
+              {/* 3. PROGETTI (GitHub + Esterni) */}
+              {sanitizedConfig.projects.github.display && (
+                <GithubProjectCard
+                  header={sanitizedConfig.projects.github.header}
+                  limit={sanitizedConfig.projects.github.automatic.limit}
+                  githubProjects={githubProjects}
+                  loading={loading}
+                  googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
+                />
+              )}
+              {sanitizedConfig.projects.external.projects.length !== 0 && (
+                <ExternalProjectCard
+                  loading={loading}
+                  header={sanitizedConfig.projects.external.header}
+                  externalProjects={sanitizedConfig.projects.external.projects}
+                  googleAnalyticId={sanitizedConfig.googleAnalytics.id}
+                />
+              )}
+
+              {/* 4. RECAPITI (DetailsCard) */}
+              <DetailsCard
+                profile={profile}
+                loading={loading}
+                github={sanitizedConfig.github}
+                social={sanitizedConfig.social}
+              />
+
+              {/* 5. IL RESTO (Selettore Tema, Esperienze, Certificazioni, ecc.) */}
+              {!sanitizedConfig.themeConfig.disableSwitch && (
+                <ThemeChanger
+                  theme={theme}
+                  setTheme={setTheme}
+                  loading={loading}
+                  themeConfig={sanitizedConfig.themeConfig}
+                />
+              )}
+              {sanitizedConfig.experiences.length !== 0 && (
+                <ExperienceCard
+                  loading={loading}
+                  experiences={sanitizedConfig.experiences}
+                />
+              )}
+              {sanitizedConfig.certifications.length !== 0 && (
+                <CertificationCard
+                  loading={loading}
+                  certifications={sanitizedConfig.certifications}
+                />
+              )}
+              {sanitizedConfig.educations.length !== 0 && (
+                <EducationCard
+                  loading={loading}
+                  educations={sanitizedConfig.educations}
+                />
+              )}
+              {sanitizedConfig.publications.length !== 0 && (
+                <PublicationCard
+                  loading={loading}
+                  publications={sanitizedConfig.publications}
+                />
+              )}
+              {sanitizedConfig.blog.display && (
+                <BlogCard
+                  loading={loading}
+                  googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
+                  blog={sanitizedConfig.blog}
+                />
+              )}
+            </div>
+
+            {/* ========================================================= */}
+            {/* 2. LAYOUT DESKTOP (Inalterato, nascosto su Mobile)        */}
+            {/* ========================================================= */}
+            <div className="hidden lg:grid grid-cols-3 gap-6 rounded-box">
               <div className="col-span-1">
                 <div className="grid grid-cols-1 gap-6">
                   {!sanitizedConfig.themeConfig.disableSwitch && (
@@ -274,6 +368,7 @@ const GitProfile = ({ config }: { config: Config }) => {
                 </div>
               </div>
             </div>
+
           </div>
           {sanitizedConfig.footer && (
             <footer
