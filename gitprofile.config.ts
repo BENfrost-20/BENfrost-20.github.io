@@ -70,7 +70,7 @@ const CONFIG = {
     telegram: '',
     website: '',
     phone: '',
-    email: 'pelorosso.leonardo@gmail.com',
+    email: 'leonardo.pelorosso@mail.polimi.it',
   },
   resume: {
     fileUrl:
