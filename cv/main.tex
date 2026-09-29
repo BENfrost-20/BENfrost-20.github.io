@@ -18,6 +18,7 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
+\usepackage{qrcode}
 % only for pdflatex
 % \input{glyphtounicode}
 
@@ -136,17 +137,24 @@
 \begin{document}
 
 %----------HEADING----------
-\begin{center}
-    \textbf{\Huge Leonardo Pelorosso} \\ \vspace{5pt}
+\noindent
+\begin{minipage}[c]{0.82\textwidth}
+    \centering
+    \textbf{\Huge Leonardo Pelorosso}\\[5pt]
     \small
-    \faEnvelope \hspace{2pt} \href{mailto:leonardo.pelorosso@mail.polimi.it}{leonardo.pelorosso@mail.polimi.it}
-    \hspace{3pt} $|$ \hspace{3pt}
+    \faEnvelope \hspace{2pt} \href{mailto:leonardo.pelorosso@mail.polimi.it}{leonardo.pelorosso@mail.polimi.it}\\[3pt]
     \faGlobe \hspace{2pt} \href{https://benfrost-20.github.io}{Portfolio}
-    \hspace{3pt} $|$ \hspace{3pt}
+    \hspace{5pt} $|$ \hspace{5pt}
     \faGithub \hspace{2pt} \href{https://github.com/BENfrost-20}{GitHub}
-    \hspace{3pt} $|$ \hspace{3pt} Italian / EU citizen
-    \\ \vspace{-3pt}
-\end{center}
+    \hspace{5pt} $|$ \hspace{5pt} Italian / EU citizen
+\end{minipage}%
+\begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \href{https://benfrost-20.github.io}{\qrcode[height=1.25cm]{https://benfrost-20.github.io}}\\[1pt]
+    {\scriptsize Portfolio}
+\end{minipage}
+
+\vspace{7pt}
 
 {\small M.Sc. candidate in High Performance Computing Engineering interested in parallel numerical methods, scientific machine learning, and performance-oriented software.}
 
@@ -162,7 +170,7 @@
         % TODO: Confirm graduation date: June 2026 precedes the October 2026 thesis start.
         \resumeItem{\textbf{Expected graduation}: June 2026}
         \resumeItem{\textbf{Thesis availability}: 9 months from October 2026}
-    	\resumeItem{\textbf{Relevant coursework}: Parallel Computing, Algorithms and Architectures for High-Performance Computing, Advanced Methods for Scientific Computing, Numerical Analysis for Machine Learning, Applied Statistics, Foundations of Operations Research.}
+        \resumeItem {\textbf{Relevant Coursework}: Parallel Computing, Computing Infrastructures, Computer Architecture, Advanced Methods for Scientific Computing, Quantum Computing \& Communications, Numerical Analysis for ML, Physics of Nuclear Materials}
         
     \resumeItemListEnd
     \resumeSubheading
